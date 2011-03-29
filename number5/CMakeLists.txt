@@ -15,15 +15,13 @@ endif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   SET(GL_INCLUDE_DIR /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/Headers)
   SET(GLUT_INCLUDE_DIR /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/GLUT.framework/Headers)
-  SET(GL_LIB -lgl)
+  SET(GL_LIB -lGL)
   SET(GLUT_LIB -lglut)
-  SET_TARGET_PROPERTIES(cube_me PROPERTIES LINK_FLAGS "${GL_LIB} ${GLUT_LIB}")
+  SET(GLU_LIB -lGLU)
+  SET_TARGET_PROPERTIES(cube_me PROPERTIES LINK_FLAGS "${GL_LIB} ${GLUT_LIB} ${GLU_LIB}")
 endif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
 include_directories(src ${GL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
 
 
 ENABLE_TESTING()
-add_test(usage_test ${CMAKE_CURRENT_BINARY_DIR}/vcdio_me -h)
-add_test(test1 ${CMAKE_CURRENT_BINARY_DIR}/vcdio_me foobar.vcd)
-add_test(test2 grep -i wire foobar.vcd)

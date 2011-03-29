@@ -12,3 +12,5 @@ or two.
 
 Note: look at the CMAKE file. See how platform
 dependencies are handled.
+Add a test to the code and CMAKE files to run through
+10 seconds of cubing.
